@@ -37,7 +37,7 @@ python3 gseapynet.py --csv degs.csv --sig 0.001 --sig-col adj_pval --minfc 0.25 
 
 ### Tweaks ###
 
-To change the color map for the networks - edit "cmap = matplotlib.cm.Wistia" to a valid maplotlib color map.
+To change the color map for the networks - edit "cmap = matplotlib.cm.coolwarm" to a valid maplotlib color map.
 
 
 
