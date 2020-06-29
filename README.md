@@ -28,7 +28,7 @@ python3 gseapynet.py --csv degs.csv --sig 0.001 --sig-col adj_pval --minfc 0.25 
 
 ### Results ###
 
-1. Png with enriched pathways as nodes sized and colored by NES score.  Edges show common genes.
+1. Png with enriched pathways as nodes with size and color by NES score.  Edges show common genes and can be found in resulting csv output.
 
 ![](example/comp10.png "Network Result")
 
