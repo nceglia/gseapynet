@@ -35,7 +35,9 @@ python3 gseapynet.py --csv degs.csv --sig 0.001 --sig-col adj_pval --minfc 0.25 
 2. CSV file (named as "reactome_results.csv" in example call)
 
 
+### Tweaks ###
 
+To change the color map for the networks - edit "cmap = matplotlib.cm.Wistia" to a valid maplotlib color map.
 
 
 
