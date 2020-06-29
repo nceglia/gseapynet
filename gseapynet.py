@@ -12,6 +12,11 @@ import sys
 from gseapy.plot import barplot
 import argparse
 
+### Change color map
+cmap = matplotlib.cm.coolwarm
+
+
+
 parser = argparse.ArgumentParser(description='Run ranked GSEA with network output.')
 parser.add_argument('--csv', type=str, help='CSV with DE genes.')
 parser.add_argument('--sig', type=float, help='Threshold for signficance in DE input.')
@@ -22,6 +27,7 @@ parser.add_argument('--pathway-fdr', type=float, help='FDR threshold for GSEA pa
 parser.add_argument('--png', type=str, help='Name of png output file. (end in .svg for svg result).')
 parser.add_argument('--gmt', type=str, help='Either a custom gmt file or the name of an enrichr library (https://amp.pharm.mssm.edu/Enrichr/#stats)')
 args = parser.parse_args()
+
 
 plt.rcParams['svg.fonttype'] = 'none'
 
@@ -58,7 +64,7 @@ data = data.sort_values(args.minfc_col)
 pre_res = gp.prerank(rnk=data, gene_sets=args.gmt,
                     processes=4,
                     permutation_num=100,
-                    outdir=args.minfc_col, format='png', seed=6,min_size=1,max_size=30000000000)
+                    outdir=args.gmt, format='png', seed=6,min_size=1,max_size=30000000000)
 
 
 print(pre_res.res2d.sort_index().head())
@@ -125,9 +131,10 @@ print(len(node_order), len(node_size), len(G.nodes()))
 pos=nx.spring_layout(G,k=0.1,scale=0.03,fixed=None)
 axes[0].set_title(args.gmt, fontsize=13)
 axes[0].axis('equal')
-nx.draw(G,pos,ax=axes[0], nodelist=node_order, node_size=node_size, vmin=minnes, vmax=maxnes,edgelist=edge_order, node_color=node_color, edge_color=edge_color, cmap=plt.cm.Wistia, edge_cmap=plt.cm.Greys, edge_vmin=0, edge_vmax=maxvedge, with_labels=True, width=2,font_size=11)
 
-cmap = matplotlib.cm.Wistia
+nx.draw(G,pos,ax=axes[0], nodelist=node_order, node_size=node_size, vmin=minnes, vmax=maxnes,edgelist=edge_order, node_color=node_color, edge_color=edge_color, cmap=cmap, edge_cmap=plt.cm.Greys, edge_vmin=0, edge_vmax=maxvedge, with_labels=True, width=2,font_size=11)
+
+
 norm = matplotlib.colors.Normalize(vmin=-8, vmax=18)
 cb1 = matplotlib.colorbar.ColorbarBase(axes[1], cmap=cmap,
                                         norm=norm,
