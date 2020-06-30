@@ -64,7 +64,7 @@ data = data.sort_values(args.minfc_col)
 pre_res = gp.prerank(rnk=data, gene_sets=args.gmt,
                     processes=4,
                     permutation_num=100,
-                    outdir=args.gmt, format='png', seed=6,min_size=1,max_size=30000000000)
+                    outdir="prerank", format='png', seed=6,min_size=1,max_size=30000000000)
 
 
 print(pre_res.res2d.sort_index().head())
