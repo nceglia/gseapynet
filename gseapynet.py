@@ -24,6 +24,7 @@ parser.add_argument('--sig-col', type=str, help='Name of column with signficance
 parser.add_argument('--minfc', type=float, help='Threshold for fold change column in csv input.')
 parser.add_argument('--minfc-col', type=str, help='Name of column with fold change in input csv.')
 parser.add_argument('--pathway-fdr', type=float, help='FDR threshold for GSEA pathway result.')
+parser.add_argument('--gene-col', type=str, help='Name of column for gene symbol or Id.')
 parser.add_argument('--png', type=str, help='Name of png output file. (end in .svg for svg result).')
 parser.add_argument('--gmt', type=str, help='Either a custom gmt file or the name of an enrichr library (https://amp.pharm.mssm.edu/Enrichr/#stats)')
 args = parser.parse_args()
@@ -57,7 +58,7 @@ margin=0.05
 fig.subplots_adjust(margin, margin, 1.-margin, 1.-margin)
 
 deg = deg[abs(deg[args.minfc_col]) > float(minfc)]
-data = deg[["gene",args.minfc_col]]
+data = deg[[args.gene_col,args.minfc_col]]
 
 data = data.sort_values(args.minfc_col)
 
@@ -129,7 +130,7 @@ node_size = _node_size
 node_color = _node_color
 print(len(node_order), len(node_size), len(G.nodes()))
 pos=nx.spring_layout(G,k=0.1,scale=0.03,fixed=None)
-axes[0].set_title(args.gmt, fontsize=13)
+axes[0].set_title(args.png.replace(".png","").replace(".svg",""), fontsize=13)
 axes[0].axis('equal')
 
 nx.draw(G,pos,ax=axes[0], nodelist=node_order, node_size=node_size, vmin=minnes, vmax=maxnes,edgelist=edge_order, node_color=node_color, edge_color=edge_color, cmap=cmap, edge_cmap=plt.cm.Greys, edge_vmin=0, edge_vmax=maxvedge, with_labels=True, width=2,font_size=11)
