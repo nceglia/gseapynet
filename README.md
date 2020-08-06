@@ -17,8 +17,9 @@ python3 -m pip install -r requirements.txt
 4. --minfc - Minimum fold change ( > 0.25)
 5. --minfc-col - Column with fold change value (ex: log2diff)
 6. --fdr-pathway - Significance threshold for GSEA pathway (< 0.05)
-7. --png - png (or svg) output file.
-8. --gmt - pathway genesets, can use a local gmt file or the name of a library from enrichr (https://amp.pharm.mssm.edu/Enrichr/#stats)
+7. --gene-col - Name of column with gene symbol or id (ex: gene_symbol)
+8. --png - png (or svg) output file.
+9. --gmt - pathway genesets, can use a local gmt file or the name of a library from enrichr (https://amp.pharm.mssm.edu/Enrichr/#stats)
 
 ### Example ###
 
